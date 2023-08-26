@@ -14,6 +14,7 @@ export class LoginPage implements OnInit {
     userEmail: '',
     userPwd: '',
   };
+  public showLoginError: boolean = false;
 
   constructor(private router: Router) {
     this.clearLoginCredentials();
@@ -33,8 +34,12 @@ export class LoginPage implements OnInit {
           user.email === loginCredentials.userEmail &&
           user.password === loginCredentials.userPwd
       );
-      if (loginResult.length < 1) return;
+      if (loginResult.length < 1) {
+        this.showLoginError = true;
+        return;
+      }
 
+      this.showLoginError = false;
       this.doAuthorize(loginResult[0]);
     }
   }

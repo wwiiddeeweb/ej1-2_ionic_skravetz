@@ -27,5 +27,14 @@
       </ion-item>
     </ion-card-content>
     <ion-button (click)="doLogin(userLoginInput)">Iniciar Sesión</ion-button>
+
+    <div *ngIf="showLoginError" style="margin-top: 10px; margin-bottom: 10px;">
+      Credenciales Incorrectas :(
+    </div>
   </ion-card>
+
+
+
+
+
 </ion-content>
