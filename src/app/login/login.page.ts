@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
     userPwd: '',
   };
   public showLoginError: boolean = false;
+  public showInputError: boolean = false;
 
   constructor(private router: Router) {
     this.clearLoginCredentials();
@@ -29,6 +30,7 @@ export class LoginPage implements OnInit {
 
   doLogin(loginCredentials: UserLoginInput): UserModel | void {
     if (loginCredentials?.userEmail && loginCredentials.userPwd) {
+      this.showInputError = false;
       const loginResult: UserModel[] | [] = userDB.filter(
         (user) =>
           user.email === loginCredentials.userEmail &&
@@ -42,6 +44,7 @@ export class LoginPage implements OnInit {
       this.showLoginError = false;
       this.doAuthorize(loginResult[0]);
     }
+    this.showInputError = true;
   }
 
   doAuthorize(userInfo: UserModel) {
