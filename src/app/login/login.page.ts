@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
           user.email === loginCredentials.userEmail &&
           user.password === loginCredentials.userPwd
       );
-      if (!loginResult) return;
+      if (loginResult.length < 1) return;
 
       this.doAuthorize(loginResult[0]);
     }
